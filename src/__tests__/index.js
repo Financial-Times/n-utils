@@ -1,9 +1,4 @@
-import {
-	emptyCheck,
-	trimObject,
-	onlyValues,
-	removeObjectKeys
-} from '../index';
+import { emptyCheck, trimObject, onlyValues, removeObjectKeys } from '../index';
 
 describe('export correctly', () => {
 	it('emptyCheck', () => {
