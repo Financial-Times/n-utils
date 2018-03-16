@@ -33,7 +33,7 @@ export const onlyValues = obj => {
 };
 
 export const removeObjectKeys = obj => keys => {
-	const output = Object.create(obj);
+	const output = Object.create(Object.getPrototypeOf(obj));
 	Object.assign(output, obj);
 	if (Array.isArray(keys)) {
 		Object.keys(obj).forEach(key => {

@@ -168,6 +168,7 @@ describe('removeObjectKeys', () => {
 			const result = removeObjectKeys(e)(['status']);
 			expect(result).not.toBe(e);
 			expect(e.status).toBe(400);
+			expect(result.status).toBeUndefined();
 			expect(result).toMatchSnapshot();
 		});
 
@@ -176,6 +177,7 @@ describe('removeObjectKeys', () => {
 			const result = removeObjectKeys(e)('status');
 			expect(result).not.toBe(e);
 			expect(e.status).toBe(400);
+			expect(result.status).toBeUndefined();
 			expect(result).toMatchSnapshot();
 		});
 	});
