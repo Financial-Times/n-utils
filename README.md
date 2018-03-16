@@ -2,20 +2,15 @@
 
 a collection of custom utils
 
-## Object
-all pure functions that clone the original object and maintains its prototype
+## Object Utils
+all pure functions that clone the original object and maintains its prototype, all function partial import
 
-### trimObject
 ```js
   const trimmed = trimObject(obj); // remove any key whose value is undefined, null or empty string ''
 ```
-
-### onlyValues
 ```js
   const trimmed = onlyValues(obj); // trimObject and remove any key whose value is a function
 ```
-
-### removeObjectKeys
 ```js
   const filtered = removeObjectKeys(obj)(['key1', 'key2']); // input can be [String] or String
 ```
