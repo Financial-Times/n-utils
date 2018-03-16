@@ -10,7 +10,7 @@ export const emptyCheck = value => {
 };
 
 export const trimObject = obj => {
-	const output = Object.create(obj);
+	const output = Object.create(Object.getPrototypeOf(obj));
 	Object.keys(obj).forEach(key => {
 		const emtpy = emptyCheck(obj[key]);
 		if (!emtpy) {
@@ -21,7 +21,7 @@ export const trimObject = obj => {
 };
 
 export const onlyValues = obj => {
-	const output = Object.create(obj);
+	const output = Object.create(Object.getPrototypeOf(obj));
 	Object.keys(obj).forEach(key => {
 		const isEmtpy = emptyCheck(obj[key]);
 		const isFunc = typeof obj[key] === 'function';
