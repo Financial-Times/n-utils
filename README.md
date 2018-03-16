@@ -6,10 +6,14 @@ a collection of custom utils
 all pure functions that clone the original object and maintains its prototype
 
 ### trimObject
-remove any key whose value is undefined, null or empty string ''
+```js
+  const trimmed = trimObject(obj); // remove any key whose value is undefined, null or empty string ''
+```
 
 ### onlyValues
-trimObject and remove any key whose value is a function
+```js
+  const trimmed = onlyValues(obj); // trimObject and remove any key whose value is a function
+```
 
 ### removeObjectKeys
 ```js
