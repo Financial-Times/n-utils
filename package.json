@@ -15,25 +15,24 @@
     "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg",
     "prepush": "make lint unit-test && make verify -j3"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@financial-times/n-gage": "^1.19.3",
+    "@financial-times/n-gage": "^2.0.0",
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^8.2.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "coveralls": "^3.0.0",
-    "eslint": "^4.16.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jest": "^21.7.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.1",
     "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-prettier": "^2.5.0",
-    "jest": "^22.1.4",
-    "nodemon": "^1.14.11",
-    "prettier": "^1.10.2"
+    "jest": "^22.4.3",
+    "nodemon": "^1.17.3",
+    "prettier": "^1.12.1"
   },
   "engines": {
     "node": ">=6.1.0"
