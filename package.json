@@ -17,22 +17,25 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@financial-times/n-gage": "^2.0.0",
+    "@financial-times/n-gage": "^2.0.2",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "coveralls": "^3.0.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
+    "coveralls": "^3.0.1",
+    "eslint": "^5.0.0",
+    "eslint-config-airbnb": "17.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-json": "^1.2.0",
-    "eslint-plugin-prettier": "^2.5.0",
-    "jest": "^23.0.1",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.1",
+    "eslint-plugin-react": "^7.9.1",
+    "jest": "^23.2.0",
     "nodemon": "^1.17.5",
-    "prettier": "^1.13.2"
+    "prettier": "^1.13.6"
   },
   "engines": {
     "node": ">=6.1.0"

@@ -42,7 +42,8 @@ export const removeObjectKeys = obj => keys => {
 			}
 		});
 		return output;
-	} else if (typeof keys === 'string' && keys !== '') {
+	}
+	if (typeof keys === 'string' && keys !== '') {
 		const k = keys;
 		Object.keys(obj).forEach(key => {
 			if (key === k) {
