@@ -106,7 +106,9 @@ jobs:
       - run:
           name: report test coverage
           command: |
-            [ -f coverage/lcov.info ] && cat coverage/lcov.info | coveralls.js
+            [ -f coverage/lcov.info ] &&
+            cat coverage/lcov.info |
+            node_modules/coveralls/bin/coveralls.js
       - store_test_results:
           path: test-results
       - store_artifacts:
