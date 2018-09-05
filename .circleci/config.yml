@@ -98,18 +98,11 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: Run test-coverage
-          command: make test-coverage
-          environment:
-            JEST_JUNIT_OUTPUT: test-results/jest/results.xml
-            MOCHA_FILE: test-results/mocha/results.xml
-      - run:
           name: Run tests
-          command: make test
+          command: make test-cover || make test
           environment:
             JEST_JUNIT_OUTPUT: test-results/jest/results.xml
             MOCHA_FILE: test-results/mocha/results.xml
-          when: on_fail
       - store_test_results:
           path: test-results
       - store_artifacts:
