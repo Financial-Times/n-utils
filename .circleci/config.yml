@@ -56,7 +56,6 @@ references:
     branches:
       ignore: /.*/
 
----
 version: 2
 
 jobs:
