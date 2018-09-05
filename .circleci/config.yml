@@ -1,6 +1,7 @@
 # generator: n-circle2-cli
 # template: component
 
+---
 references:
 
   container_config_node8: &container_config_node8
@@ -22,19 +23,19 @@ references:
 
   npm_cache_keys: &npm_cache_keys
     keys:
-        - v1-dependency-npm-{{ checksum "package.json" }}-
-        - v1-dependency-npm-{{ checksum "package.json" }}
-        - v1-dependency-npm-
+      - v1-dependency-npm-{{ checksum "package.json" }}-
+      - v1-dependency-npm-{{ checksum "package.json" }}
+      - v1-dependency-npm-
 
   cache_npm_cache: &cache_npm_cache
     save_cache:
-        key: v1-dependency-npm-{{ checksum "package.json" }}-{{ epoch }}
-        paths:
+      key: v1-dependency-npm-{{ checksum "package.json" }}-{{ epoch }}
+      paths:
         - ./node_modules/
 
   restore_npm_cache: &restore_npm_cache
     restore_cache:
-        <<: *npm_cache_keys
+      <<: *npm_cache_keys
 
   filters_only_master: &filters_only_master
     branches:
@@ -55,6 +56,7 @@ references:
     branches:
       ignore: /.*/
 
+---
 version: 2
 
 jobs:
@@ -97,11 +99,18 @@ jobs:
     steps:
       - *attach_workspace
       - run:
+          name: Run test-coverage
+          command: make test-coverage
+          environment:
+            JEST_JUNIT_OUTPUT: test-results/jest/results.xml
+            MOCHA_FILE: test-results/mocha/results.xml
+      - run:
           name: Run tests
           command: make test
           environment:
             JEST_JUNIT_OUTPUT: test-results/jest/results.xml
             MOCHA_FILE: test-results/mocha/results.xml
+          when: on_fail
       - store_test_results:
           path: test-results
       - store_artifacts:
