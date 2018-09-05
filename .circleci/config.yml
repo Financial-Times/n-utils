@@ -103,6 +103,10 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: test-results/jest/results.xml
             MOCHA_FILE: test-results/mocha/results.xml
+      - run:
+          name: report test coverage
+          shell: |
+            [ -f coverage/lcov.info ] && cat coverage/lcov.info | coveralls.js
       - store_test_results:
           path: test-results
       - store_artifacts:
