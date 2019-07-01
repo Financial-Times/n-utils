@@ -13,7 +13,8 @@
     "prepublish": "make build",
     "precommit": "make lint && node_modules/.bin/secret-squirrel",
     "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg",
-    "prepush": "make lint unit-test && make verify -j3"
+    "prepush": "make lint unit-test && make verify -j3",
+    "prepare": "npx snyk protect || npx snyk protect -d || true"
   },
   "dependencies": {},
   "devDependencies": {
@@ -33,7 +34,8 @@
     "eslint-plugin-prettier": "^2.6.2",
     "jest": "^23.5.0",
     "nodemon": "^1.18.4",
-    "prettier": "^1.14.2"
+    "prettier": "^1.14.2",
+    "snyk": "^1.168.0"
   },
   "engines": {
     "node": ">=6.1.0"
