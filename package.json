@@ -11,18 +11,16 @@
     "test": "jest",
     "cover": "jest --coverage",
     "prepublish": "make build",
-    "precommit": "make lint && node_modules/.bin/secret-squirrel",
-    "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg",
-    "prepush": "make lint unit-test && make verify -j3",
-    "prepare": "npx snyk protect || npx snyk protect -d || true"
+    "prepare": "npx snyk protect || npx snyk protect -d || true",
+    "preinstall": "[ \"$INIT_CWD\" != \"$PWD\" ] || npm_config_yes=true npx check-engine"
   },
-  "dependencies": {},
   "devDependencies": {
     "@financial-times/n-gage": "^8.2.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^9.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "check-engine": "^1.10.1",
     "coveralls": "^3.0.2",
     "eslint": "^5.5.0",
     "eslint-config-airbnb-base": "13.1.0",
@@ -38,6 +36,18 @@
     "snyk": "^1.168.0"
   },
   "engines": {
-    "node": "12.x"
+    "node": "12.x",
+    "npm": "7.x || 8.x"
+  },
+  "volta": {
+    "node": "12.22.8",
+    "npm": "7.24.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "node_modules/.bin/secret-squirrel-commitmsg",
+      "pre-commit": "make lint && node_modules/.bin/secret-squirrel",
+      "pre-push": "make lint unit-test && make verify -j3"
+    }
   }
 }
