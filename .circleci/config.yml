@@ -1,6 +1,5 @@
 # generator: n-circle2-cli
 # template: component
-
 ---
 references:
 
@@ -10,7 +9,7 @@ references:
       - image: cimg/node:<< parameters.node-version >>-browsers
     parameters:
       node-version:
-        default: "16.14"
+        default: "18.17"
         type: string
 
   container_config_lambda_node: &container_config_lambda_node
@@ -19,11 +18,10 @@ references:
       - image: lambci/lambda:build-nodejs<< parameters.node-version >>
     parameters:
       node-version:
-        default: "14.19"
+        default: "18.17"
         type: string
 
-  workspace_root: &workspace_root
-    ~/project
+  workspace_root: &workspace_root ~/project
 
   attach_workspace: &attach_workspace
     attach_workspace:
@@ -77,10 +75,10 @@ jobs:
       - checkout
       - run:
           name: Checkout next-ci-shared-helpers
-          command: git clone --depth 1 git@github.com:Financial-Times/next-ci-shared-helpers.git .circleci/shared-helpers
+          command: git clone --depth 1
+            git@github.com:Financial-Times/next-ci-shared-helpers.git --branch
+            unpin-heroku .circleci/shared-helpers
       - *restore_npm_cache
-      - node/install-npm:
-          version: "7"
       - run:
           name: Install project dependencies
           command: make install
@@ -129,7 +127,8 @@ jobs:
       - run:
           name: shared-helper / npm-store-auth-token
           command: .circleci/shared-helpers/helper-npm-store-auth-token
-      - run: npx snyk monitor --org=customer-products --project-name=Financial-Times/n-utils
+      - run: npx snyk monitor --org=customer-products
+          --project-name=Financial-Times/n-utils
       - run:
           name: shared-helper / npm-version-and-publish-public
           command: .circleci/shared-helpers/helper-npm-version-and-publish-public
@@ -146,14 +145,14 @@ workflows:
           name: build-v<< matrix.node-version >>
           matrix:
             parameters:
-              node-version: [ "16.14", "14.19" ]
+              node-version: [ "16.20", "18.17" ]
       - test:
           requires:
             - build-v<< matrix.node-version >>
           name: test-v<< matrix.node-version >>
           matrix:
             parameters:
-              node-version: [ "16.14", "14.19" ]
+              node-version: [ "16.20", "18.17" ]
   build-test-publish:
     jobs:
       - build:
@@ -162,7 +161,7 @@ workflows:
           name: build-v<< matrix.node-version >>
           matrix:
             parameters:
-              node-version: [ "16.14", "14.19" ]
+              node-version: [ "16.20", "18.17" ]
       - test:
           filters:
             <<: *filters_version_tag
@@ -171,13 +170,13 @@ workflows:
           name: test-v<< matrix.node-version >>
           matrix:
             parameters:
-              node-version: [ "16.14", "14.19" ]
+              node-version: [ "16.20", "18.17" ]
       - publish:
           context: npm-publish-token
           filters:
             <<: *filters_version_tag
           requires:
-            - test-v16.14
+            - test-v18.17
 
   nightly:
     triggers:
@@ -191,7 +190,7 @@ workflows:
           name: build-v<< matrix.node-version >>
           matrix:
             parameters:
-              node-version: [ "16.14", "14.19" ]
+              node-version: [ "16.20", "18.17" ]
       - test:
           requires:
             - build-v<< matrix.node-version >>
@@ -199,7 +198,7 @@ workflows:
           name: test-v<< matrix.node-version >>
           matrix:
             parameters:
-              node-version: [ "16.14", "14.19" ]
+              node-version: [ "16.20", "18.17" ]
 notify:
   webhooks:
     - url: https://ft-next-webhooks.herokuapp.com/circleci2-workflow
