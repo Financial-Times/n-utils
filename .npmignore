@@ -22,7 +22,6 @@ src/
 .gitignore
 ft.yml
 Makefile
-secret-squirrel.js
 yarn.lock
 README.md
 
